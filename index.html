@@ -1,16 +1,106 @@
 <!DOCTYPE html>
 <html>
-   <title>Signetar</title>
-  <link rel="icon" type="image/x-icon" href="https://emojipedia-us.s3.amazonaws.com/source/skype/289/crystal-ball_1f52e.png">
-<div class="container">
-    <h1>
-        <link rel="stylesheet" href="styles.css">
-        <script src="styles.js"></script>
-        <a href="" class="typewrite" data-period="1000" data-type='[ "Signetar", "Hyeonwook", "강현욱", "Welcome", "Signetar#3735", "me@hyeonwook.com", "enclip", "still here?", "hmm...", "have a good day.", ":)" ]'>
-        <span class="wrap"></span>
-        </a>
-    </h1>
-    <p align="center", style="font-family: Helvetica Neue">
-        oop- my website is under construction.<br>Signetar#3735 for any inquiries.
-  </div>
+<head>
+    <title>Signetar</title>
+    <link rel="icon" type="image/x-icon" href="https://emojipedia-us.s3.amazonaws.com/source/skype/289/crystal-ball_1f52e.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .typewrite {
+            position: relative;
+            color: black;
+        }
+
+        .typewrite > .wrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-right: 0.1em solid black;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="styles.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.getElementsByClassName('typewrite');
+            for (let i = 0; i < elements.length; i++) {
+                const toRotate = elements[i].getAttribute('data-type');
+                const period = elements[i].getAttribute('data-period');
+                if (toRotate) {
+                    new TxtType(elements[i], JSON.parse(toRotate), period);
+                }
+            }
+        });
+
+        class TxtType {
+            constructor(el, toRotate, period) {
+                this.toRotate = toRotate;
+                this.el = el;
+                this.loopNum = 0;
+                this.period = parseInt(period, 10) || 2000;
+                this.txt = '';
+                this.tick();
+                this.isDeleting = false;
+            }
+
+            tick() {
+                const i = this.loopNum % this.toRotate.length;
+                const fullTxt = this.toRotate[i];
+
+                if (this.isDeleting) {
+                    this.txt = fullTxt.substring(0, this.txt.length - 1);
+                } else {
+                    this.txt = fullTxt.substring(0, this.txt.length + 1);
+                }
+
+                this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+                const that = this;
+                let delta = 200 - Math.random() * 100;
+
+                if (this.isDeleting) {
+                    delta /= 2;
+                }
+
+                if (!this.isDeleting && this.txt === fullTxt) {
+                    delta = this.period;
+                    this.isDeleting = true;
+                } else if (this.isDeleting && this.txt === '') {
+                    this.isDeleting = false;
+                    this.loopNum++;
+                    delta = 500;
+                }
+
+                setTimeout(function() {
+                    that.tick();
+                }, delta);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            Hi: I'm
+            <a href="" class="typewrite" data-period="1000" data-type='[ "James", "Signetar" ]'>
+                <span class="wrap"></span>
+            </a>
+        </h1>
+        <p align="center">
+            <a href="">Read more about me</a>
+        </p>
+    </div>
+</body>
 </html>

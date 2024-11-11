@@ -5,103 +5,29 @@
     <link rel="icon" type="image/x-icon" href="https://emojipedia-us.s3.amazonaws.com/source/skype/289/crystal-ball_1f52e.png">
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            background-color: black;
-            font-family: 'Helvetica Neue', sans-serif;
-        }
-
-        .typewrite {
-            position: relative;
-            color: white;
-        }
-
-        .typewrite > .wrap {
-            position: relative;
-            top: 0;
-            left: 0;
-            border-right: 0.1em solid white;
-        }
-
-        a {
-            text-decoration: none;
-            color: white;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
+            body {background-color: black; font-family: Arial, Helvetica, sans-serif;}
+            h1 {
+                color: white;
+                margin-top: 50px;
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+            p {
+                color: white;
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+            a {
+                color: white;
+            }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.getElementsByClassName('typewrite');
-            for (let i = 0; i < elements.length; i++) {
-                const toRotate = elements[i].getAttribute('data-type');
-                const period = elements[i].getAttribute('data-period');
-                if (toRotate) {
-                    new TxtType(elements[i], JSON.parse(toRotate), period);
-                }
-            }
-        });
-
-        class TxtType {
-            constructor(el, toRotate, period) {
-                this.toRotate = toRotate;
-                this.el = el;
-                this.loopNum = 0;
-                this.period = parseInt(period, 10) || 2000;
-                this.txt = '';
-                this.tick();
-                this.isDeleting = false;
-            }
-
-            tick() {
-                const i = this.loopNum % this.toRotate.length;
-                const fullTxt = this.toRotate[i];
-
-                if (this.isDeleting) {
-                    this.txt = fullTxt.substring(0, this.txt.length - 1);
-                } else {
-                    this.txt = fullTxt.substring(0, this.txt.length + 1);
-                }
-
-                this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-                const that = this;
-                let delta = 200 - Math.random() * 100;
-
-                if (this.isDeleting) {
-                    delta /= 2;
-                }
-
-                if (!this.isDeleting && this.txt === fullTxt) {
-                    delta = this.period;
-                    this.isDeleting = true;
-                } else if (this.isDeleting && this.txt === '') {
-                    this.isDeleting = false;
-                    this.loopNum++;
-                    delta = 500;
-                }
-
-                setTimeout(function() {
-                    that.tick();
-                }, delta);
-            }
-        }
-    </script>
-</head>
-<body>
-    <div class="container">
+    </head>
+    <body>
         <p align="center">
-            <a href="https://github.com/Signetar">Github</a> | <a href="mailto:me@hyeonwook.com">Email</a>
+            <a href="https://github.com/Signetar">github</a> | <a href="mailto:endpiece@icloud.com">email</a>
         </p>
-        <h1>
-            <a href="" class="typewrite" data-period="1000" data-type='[ "Hyeonwook", "Signetar" ]'>
-                <span class="wrap"></span>
-            </a>
-        </h1>
-        <p align="center">
-            <a href="">< Read more about me ></a>
-        </p>
-    </div>
-</body>
+        <h1>hiiiiiii :3</h1>
+        <p>hello hello hello hi hi hi</p>
+        Content goes here probably
+    </body>
 </html>
